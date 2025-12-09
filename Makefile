@@ -1,11 +1,7 @@
-.PHONY: build-api run-api stop-api
+.PHONY: start-project stop-project
 
-build-api:
-	docker build -t iris-api:latest -f src/api/Dockerfile .
+start-project:
+	docker-compose -p mlops up -d --build
 
-run-api:
-	docker run -d --name iris-api -p 8000:8000 iris-api:latest
-
-stop-api:
-	docker stop iris-api || true
-	docker rm iris-api || true
+stop-project:
+	docker-compose -p mlops down
